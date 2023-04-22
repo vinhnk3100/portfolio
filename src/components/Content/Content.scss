@@ -1,0 +1,128 @@
+@import "../../styles/index.scss";
+
+.content_container {
+    width: 1440px;
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .about_me-outer-parallax-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .outer_parallax-child {
+            border-radius: 40px;
+            width: 350px;
+            color: #FFF;
+            height: 600px;
+            border: 2px solid $card-border-color;
+            background-color: $card-bg-color;
+            padding: 1rem;
+            margin: 2rem;
+            width: auto;
+
+            span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100px;
+                font-size: 30px;
+                color: #FFF;
+                font-weight: 600;
+            }
+        }
+
+        .inner_parallax-container {
+            border: 2px solid $card-border-color;
+            height: 520px;
+            border-radius: 40px;
+
+            .inner_parallax-img-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 350px;
+                height: 600px;
+                
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: fill;
+                    background-size: auto;
+                    background-repeat: repeat;
+                    background-position: center;
+                }
+            }
+        }
+    }
+
+    .self-interst {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .outer_parallax-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+    
+            .outer_parallax-child {
+                border-radius: 40px;
+                color: #FFF;
+                border: 2px solid $card-border-color;
+                background-color: $card-bg-color;
+                margin: 7px;
+                width: 360px;
+                height: 300px;
+                overflow: hidden;
+    
+                span {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    font-size: 24px;
+                    color: #FFF;
+                    font-weight: 600;
+
+                    &:nth-child(1) {
+                        margin-top: 32px;
+                    }
+
+                    &:nth-child(2) {
+                        margin-top: 6px;
+                        margin-bottom: 32px;
+                        font-size: 18px;
+                    }
+                }
+            }
+    
+            .inner_parallax-container {
+                height: 520px;
+                border-radius: 40px;
+    
+                .inner_parallax-img-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    height: 100%;
+                    margin-top: 24px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: fill;
+                        background-size: auto;
+                        background-repeat: repeat;
+                        background-position: center;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,120 @@
+@mixin xsm {
+    @media screen and  (min-width: #{$screen-xsm-min}) {
+        @content;
+    }
+}
+
+@mixin xsm-down {
+    @media screen and  (max-width: #{$screen-xsm-min}) {
+        @content;
+    }
+}
+
+@mixin msm-down {
+    @media screen and  (max-width: #{$screen-msm-min}) {
+        @content;
+    }
+}
+
+// Small devices
+@mixin sm {
+    @media screen and  (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+}
+
+@mixin sm-down {
+    @media screen and  (max-width: #{$screen-sm-min}) {
+        @content;
+    }
+}
+
+// Sub medium devices
+@mixin smd {
+    @media screen and  (min-width: #{$screen-smd-min}) {
+        @content;
+    }
+}
+
+@mixin smd-down {
+    @media screen and  (max-width: #{$screen-smd-min}) {
+        @content;
+    }
+}
+
+// Medium devices
+@mixin md {
+    @media screen and  (min-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+
+@mixin md-down {
+    @media screen and  (max-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+
+// Large devices
+@mixin lg {
+    @media screen and  (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+
+@mixin lg-down {
+    @media screen and  (max-width: #{$screen-lg-min }) {
+        @content;
+    }
+}
+
+// Extra large devices
+@mixin xl {
+    @media screen and  (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+}
+
+@mixin xl-down {
+    @media screen and  (max-width: #{$screen-xl-min}) {
+        @content;
+    }
+}
+
+@mixin xxl {
+    @media screen and  (min-width: #{$screen-xxl-min}) {
+        @content;
+    }
+}
+
+@mixin xxl-down {
+    @media screen and  (max-width: #{$screen-xxl-min}) {
+        @content;
+    }
+}
+
+@mixin xxxl {
+    @media screen and  (min-width: #{$screen-xxxl-min}) {
+        @content;
+    }
+}
+
+@mixin xxxl-down {
+    @media screen and  (max-width: #{$screen-xxxl-min}) {
+        @content;
+    }
+}
+
+@mixin fhd-desktop-up {
+    @media screen and  (min-width: #{$screen-fhd-min}) {
+        @content;
+    }
+}
+
+// Flex Properties
+@mixin flexProperties($jc, $ai, $dir) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-direction: $dir;
+}

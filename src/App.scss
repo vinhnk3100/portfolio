@@ -1,0 +1,16 @@
+@import './styles/index.scss';
+
+.hero_container {
+    background-image: linear-gradient(to bottom, rgba(39, 37, 156, 0.562), rgb(12, 0, 70), rgba(6, 23, 71, 0.521)), url('./assets/images/925905.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    object-fit: fill;
+    width: 100%;
+}
+
+.body_content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
