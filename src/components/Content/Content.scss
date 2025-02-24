@@ -1,128 +1,161 @@
 @import "../../styles/index.scss";
 
 .content_container {
-    width: 1440px;
-    padding: 3rem;
+  width: 100%;
+  height: 800px;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+
+  .about_me-outer-parallax-container {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    .about_me-outer-parallax-container {
+    .outer_parallax-child {
+      border-radius: 20px;
+      width: 350px;
+      color: #fff;
+      height: 600px;
+      border: 2px solid $card-border-color;
+      background-color: $card-bg-color;
+      padding: 1rem;
+      margin: 2rem;
+      width: 100%;
+
+      &:hover {
+        box-shadow: 0 5px 20px #6b3db4;
+      }
+
+      span {
         display: flex;
         justify-content: center;
         align-items: center;
-
-        .outer_parallax-child {
-            border-radius: 40px;
-            width: 350px;
-            color: #FFF;
-            height: 600px;
-            border: 2px solid $card-border-color;
-            background-color: $card-bg-color;
-            padding: 1rem;
-            margin: 2rem;
-            width: auto;
-
-            span {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                height: 100px;
-                font-size: 30px;
-                color: #FFF;
-                font-weight: 600;
-            }
-        }
-
-        .inner_parallax-container {
-            border: 2px solid $card-border-color;
-            height: 520px;
-            border-radius: 40px;
-
-            .inner_parallax-img-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 350px;
-                height: 600px;
-                
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: fill;
-                    background-size: auto;
-                    background-repeat: repeat;
-                    background-position: center;
-                }
-            }
-        }
+        width: 100%;
+        height: 100px;
+        font-size: 30px;
+        color: #fff;
+        font-weight: 600;
+      }
     }
 
-    .self-interst {
+    .inner_parallax-container {
+      border: 2px solid $card-border-color;
+      height: 520px;
+      border-radius: 40px;
+
+      .inner_parallax-img-container {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
 
-        .outer_parallax-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-    
-            .outer_parallax-child {
-                border-radius: 40px;
-                color: #FFF;
-                border: 2px solid $card-border-color;
-                background-color: $card-bg-color;
-                margin: 7px;
-                width: 360px;
-                height: 300px;
-                overflow: hidden;
-    
-                span {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 100%;
-                    font-size: 24px;
-                    color: #FFF;
-                    font-weight: 600;
+        a {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
 
-                    &:nth-child(1) {
-                        margin-top: 32px;
-                    }
-
-                    &:nth-child(2) {
-                        margin-top: 6px;
-                        margin-bottom: 32px;
-                        font-size: 18px;
-                    }
-                }
-            }
-    
-            .inner_parallax-container {
-                height: 520px;
-                border-radius: 40px;
-    
-                .inner_parallax-img-container {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 100%;
-                    height: 100%;
-                    margin-top: 24px;
-
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: fill;
-                        background-size: auto;
-                        background-repeat: repeat;
-                        background-position: center;
-                    }
-                }
-            }
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
         }
+      }
     }
+  }
+
+  .self-interst {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+      "item1 item2"
+      "item3 .";
+    gap: 1rem;
+
+    .outer_parallax-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+
+      .outer_parallax-child {
+        border-radius: 20px;
+        border: 2px solid $card-border-color;
+        background-color: $card-bg-color;
+        width: 360px;
+        height: 300px;
+
+        &:hover {
+          box-shadow: 0 5px 20px #6b3db4;
+        }
+
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          font-size: 24px;
+          color: #fff;
+          font-weight: 600;
+
+          &:nth-child(1) {
+            margin-top: 32px;
+          }
+
+          &:nth-child(2) {
+            margin-top: 6px;
+            margin-bottom: 32px;
+            font-size: 18px;
+          }
+        }
+      }
+
+      .inner_parallax-container {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+
+        .inner_parallax-img-container {
+          display: flex;
+          height: 100%;
+          align-items: center;
+          justify-content: center;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            background-size: auto;
+            background-repeat: repeat;
+            background-position: center;
+          }
+
+          .tech-stack-img {
+            width: 50px;
+            height: 50px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            padding: 0.4em;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tech-stack-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(60px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 1em;
+  padding: 1em 1em;
+  background-color: #000;
 }

@@ -2,23 +2,18 @@ import PredatorImg from '../assets/images/Predator.jpg';
 
 export const ContentCard = {
     CARD_1: {
-        TITLE: 'My CV',
-        SUB_TITLE: "Place where I store my CV",
+        TITLE: 'About me',
+        SUB_TITLE: "",
         IMAGE: PredatorImg
     },
     CARD_2: {
         TITLE: 'Tech stack',
-        SUB_TITLE: "Tools I enjoy using",
+        SUB_TITLE: `Tech stack that I use`,
         IMAGE: PredatorImg
     },
     CARD_3: {
-        TITLE: 'My bookshelf',
-        SUB_TITLE: "Place where I store my books",
-        IMAGE: PredatorImg
-    },
-    CARD_4: {
-        TITLE: 'My todo-list',
-        SUB_TITLE: "Coming Soon",
+        TITLE: 'To be continued...',
+        SUB_TITLE: "...",
         IMAGE: PredatorImg
     }
 }
