@@ -17,6 +17,31 @@ export default function Content() {
     const card4 = document.querySelectorAll(".card-container")[3];
     const card5 = document.querySelectorAll(".card-container")[4];
     const card6 = document.querySelectorAll(".card-container")[5];
+    const heroContainer = document.querySelector(".hero_container");
+
+    const lockLastCardsInHero = (scrollTrigger) => {
+      if (!heroContainer) return;
+
+      const fixedTop = window.innerHeight * 0.25;
+      const top =
+        (scrollTrigger?.end ?? window.scrollY) +
+        fixedTop -
+        heroContainer.offsetTop;
+
+      [card5, card6].forEach((card) => {
+        gsap.set(card, {
+          position: "absolute",
+          top,
+          bottom: "auto",
+        });
+      });
+    };
+
+    const releaseLastCards = () => {
+      gsap.set([card5, card6], {
+        clearProps: "position,top,bottom",
+      });
+    };
 
     // gsap.set(card5, { width: "20%", yPercent: -19, xPercent: 200 })
 
@@ -28,6 +53,15 @@ export default function Content() {
           start: () => "33% 40%",
           end: () => "+=1000px",
           scrub: true,
+          onLeave: (self) => lockLastCardsInHero(self),
+          onEnterBack: releaseLastCards,
+          onRefresh: (self) => {
+            if (self.progress === 1) {
+              lockLastCardsInHero(self);
+            } else {
+              releaseLastCards();
+            }
+          },
           onUpdate({ getVelocity }) {
             gsap.fromTo(
               card1,
@@ -146,27 +180,11 @@ export default function Content() {
         { overwrite: "auto", x: 400, opacity: 0, scale: 0, force3D: true },
         "2.4"
       );
-      tl.to(card5, {
-        scale: 1,
-        x: 0,
-        y: -400,
-        autoAlpha: 0,
-        ease: Linear.easeInOut,
-      });
-      // tl.to(card5 , { scale: 1.2  ,ease: Linear.easeInOut })
-
       tl.from(
         card6,
-        { overwrite: "auto", x: 400, opacity: 0, scale: 0, force3D: true },
+        { overwrite: "auto", x: -400, opacity: 0, scale: 0, force3D: true },
         "2.4"
       );
-      tl.to(card6, {
-        scale: 1,
-        x: 0,
-        y: 0,
-        autoAlpha: 0,
-        ease: Linear.easeInOut,
-      });
     });
 
     return () => {
