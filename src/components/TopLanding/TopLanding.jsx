@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import { useRef } from "react";
 import "./TopLanding.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 // add plugins
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function TopLanding() {
-  useEffect(() => {
-    let ctx = gsap.context(() => {
+  const rootRef = useRef(null);
+
+  useGSAP(
+    () => {
       let tl = gsap.timeline();
       tl.from(".introduce-text", { scale: 4 });
       gsap.set(".introduce-text", { scale: 1 });
@@ -17,23 +20,19 @@ export default function TopLanding() {
         scale: 0,
         autoAlpha: 0,
         scrollTrigger: {
-          trigger: ".container",
+          trigger: rootRef.current,
           start: () => "top top",
           end: () => "+=50px",
           scrub: 1,
           toggleActions: "restart restart play restart",
         },
       });
-    });
-
-    return () => {
-      ctx.revert();
-      ScrollTrigger.killAll();
-    };
-  }, []);
+    },
+    { scope: rootRef }
+  );
 
   return (
-    <div className="container">
+    <div ref={rootRef} className="container">
       <div className="introduce-text">
         Hey, I'm Vinh - Front end Developer. This is my little corners of my
         projects over year in school of learning and studying & even working. I

@@ -1,130 +1,107 @@
-import React, { useEffect } from "react";
-import "./CardContent.scss";
+import { useGSAP } from "@gsap/react";
 import gsap, { Linear } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ThanhCongImgLogo from "../../assets/images/thanh-cong-textile-garment-investment-trading-joint-stock-company--600.png";
-import NinoImg from "../../assets/images/ninovitgym.png";
-import StechImg from "../../assets/images/stechvn.png";
 import EBusImg from "../../assets/images/ebus.png";
-import STDPortal from "../../assets/images/stdportal.png";
 import MorImg from "../../assets/images/mor.png";
+import NinoImg from "../../assets/images/ninovitgym.png";
+import STDPortal from "../../assets/images/stdportal.png";
+import StechImg from "../../assets/images/stechvn.png";
+import ThanhCongImgLogo from "../../assets/images/thanh-cong-textile-garment-investment-trading-joint-stock-company--600.png";
+import "./CardContent.scss";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function Content() {
-  useEffect(() => {
-    const card1 = document.querySelectorAll(".card-container")[0];
-    const card2 = document.querySelectorAll(".card-container")[1];
-    const card3 = document.querySelectorAll(".card-container")[2];
-    const card4 = document.querySelectorAll(".card-container")[3];
-    const card5 = document.querySelectorAll(".card-container")[4];
-    const card6 = document.querySelectorAll(".card-container")[5];
-    const heroContainer = document.querySelector(".hero_container");
+  useGSAP(
+    (_, contextSafe) => {
+      const card1 = document.querySelectorAll(".card-container")[0];
+      const card2 = document.querySelectorAll(".card-container")[1];
+      const card3 = document.querySelectorAll(".card-container")[2];
+      const card4 = document.querySelectorAll(".card-container")[3];
+      const card5 = document.querySelectorAll(".card-container")[4];
+      const card6 = document.querySelectorAll(".card-container")[5];
+      const showcaseProject = document.querySelector(".showcase-project");
+      const heroContainer = document.querySelector(".hero_container");
+      const lastCardsFollowScrollDistance = window.innerHeight * 0.18;
 
-    const lockLastCardsInHero = (scrollTrigger) => {
-      if (!heroContainer) return;
+      const lockLastCardsInHero = contextSafe((scrollTrigger) => {
+        if (!heroContainer) return;
 
-      const fixedTop = window.innerHeight * 0.25;
-      const top =
-        (scrollTrigger?.end ?? window.scrollY) +
-        fixedTop -
-        heroContainer.offsetTop;
+        const fixedTop = window.innerHeight * 0.25;
+        const targetTop =
+          (scrollTrigger?.end ?? window.scrollY) +
+          fixedTop -
+          heroContainer.offsetTop;
+        const maxTop = heroContainer.offsetHeight - window.innerHeight * 0.75;
+        const top = Math.min(targetTop, maxTop);
 
-      [card5, card6].forEach((card) => {
-        gsap.set(card, {
-          position: "absolute",
-          top,
-          bottom: "auto",
+        [card5, card6].forEach((card) => {
+          gsap.set(card, {
+            position: "absolute",
+            top,
+            bottom: "auto",
+          });
         });
       });
-    };
 
-    const releaseLastCards = () => {
-      gsap.set([card5, card6], {
-        clearProps: "position,top,bottom",
+      const releaseLastCards = contextSafe(() => {
+        gsap.set([card5, card6], {
+          clearProps: "position,top,bottom",
+        });
       });
-    };
 
-    // gsap.set(card5, { width: "20%", yPercent: -19, xPercent: 200 })
+      // gsap.set(card5, { width: "20%", yPercent: -19, xPercent: 200 })
 
-    let ctx = gsap.context(() => {
+      const skewCardsByVelocity = contextSafe(({ getVelocity }) => {
+        const velocity = getVelocity();
+
+        gsap.fromTo(
+          card1,
+          { skewX: `${velocity / -900}deg` },
+          { skewX: 0, duration: 0.3, overwrite: "auto" },
+        );
+        gsap.fromTo(
+          card2,
+          { skewX: `${velocity / 900}deg` },
+          { skewX: 0, duration: 0.3, overwrite: "auto" },
+        );
+        gsap.fromTo(
+          card3,
+          { skewX: `${velocity / -900}deg` },
+          { skewX: 0, duration: 0.3, overwrite: "auto" },
+        );
+        gsap.fromTo(
+          card4,
+          { skewX: `${velocity / 900}deg` },
+          { skewX: 0, duration: 0.3, overwrite: "auto" },
+        );
+        gsap.fromTo(
+          card5,
+          { skewX: `${velocity / -900}deg` },
+          { skewX: 0, duration: 0.3, overwrite: "auto" },
+        );
+        gsap.fromTo(
+          card6,
+          { skewX: `${velocity / -900}deg` },
+          { skewX: 0, duration: 0.3, overwrite: "auto" },
+        );
+      });
+
       let tl = gsap.timeline({
         scrollTrigger: {
           ease: "power4.inOut",
-          trigger: ".container",
-          start: () => "33% 40%",
-          end: () => "+=1000px",
+          trigger: showcaseProject,
+          start: () => "top+=50px top",
+          end: () => "+=800%",
           scrub: true,
-          onLeave: (self) => lockLastCardsInHero(self),
-          onEnterBack: releaseLastCards,
-          onRefresh: (self) => {
-            if (self.progress === 1) {
-              lockLastCardsInHero(self);
-            } else {
-              releaseLastCards();
-            }
-          },
-          onUpdate({ getVelocity }) {
-            gsap.fromTo(
-              card1,
-              {
-                skewX: `${getVelocity() / -300}deg`,
-              },
-              {
-                skewX: 0,
-              }
-            );
-            gsap.fromTo(
-              card2,
-              {
-                skewX: `${getVelocity() / 300}deg`,
-              },
-              {
-                skewX: 0,
-              }
-            );
-            gsap.fromTo(
-              card3,
-              {
-                skewX: `${getVelocity() / -300}deg`,
-              },
-              {
-                skewX: 0,
-              }
-            );
-            gsap.fromTo(
-              card4,
-              {
-                skewX: `${getVelocity() / 300}deg`,
-              },
-              {
-                skewX: 0,
-              }
-            );
-            gsap.fromTo(
-              card5,
-              {
-                skewX: `${getVelocity() / -300}deg`,
-              },
-              {
-                skewX: 0,
-              }
-            );
-            gsap.fromTo(
-              card6,
-              {
-                skewX: `${getVelocity() / -300}deg`,
-              },
-              {
-                skewX: 0,
-              }
-            );
-          },
+          onUpdate: skewCardsByVelocity,
         },
       });
 
       tl.from(
         card1,
         { overwrite: "auto", x: 400, opacity: 0, scale: 0, force3D: true },
-        "0.1"
+        "0",
       );
       tl.to(card1, {
         scale: 6,
@@ -137,7 +114,7 @@ export default function Content() {
       tl.from(
         card2,
         { overwrite: "auto", x: -400, opacity: 0, scale: 0, force3D: true },
-        "0.6"
+        "0.6",
       );
       tl.to(card2, {
         scale: 6,
@@ -150,7 +127,7 @@ export default function Content() {
       tl.from(
         card3,
         { overwrite: "auto", x: 400, opacity: 0, scale: 0, force3D: true },
-        "1.2"
+        "1.2",
       );
       tl.to(card3, {
         scale: 6,
@@ -164,7 +141,7 @@ export default function Content() {
       tl.from(
         card4,
         { overwrite: "auto", x: -400, opacity: 0, scale: 0, force3D: true },
-        "1.8"
+        "1.8",
       );
       tl.to(card4, {
         scale: 6,
@@ -178,23 +155,34 @@ export default function Content() {
       tl.from(
         card5,
         { overwrite: "auto", x: 400, opacity: 0, scale: 0, force3D: true },
-        "2.4"
+        "2.4",
       );
       tl.from(
         card6,
         { overwrite: "auto", x: -400, opacity: 0, scale: 0, force3D: true },
-        "2.4"
+        "2.4",
       );
-    });
 
-    return () => {
-      ctx.revert();
-      ScrollTrigger.killAll();
-    };
-  }, []);
+      ScrollTrigger.create({
+        trigger: showcaseProject,
+        start: () => `top+=${50 + window.innerHeight * 8}px top`,
+        end: () => `+=${lastCardsFollowScrollDistance}px`,
+        onLeave: (self) => lockLastCardsInHero(self),
+        onEnterBack: releaseLastCards,
+        onRefresh: (self) => {
+          if (self.progress === 1) {
+            lockLastCardsInHero(self);
+          } else {
+            releaseLastCards();
+          }
+        },
+      });
+    },
+    { dependencies: [] },
+  );
 
   return (
-    <div className="container">
+    <div className="card-content-container">
       <div className="showcase-project">
         <div className="card-container">
           <div className="card">

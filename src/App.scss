@@ -1,19 +1,43 @@
-@import './styles/index.scss';
+@import "./styles/index.scss";
+
+.app-container {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+}
+
+.portfolio-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(39, 37, 156, 0.562),
+      rgb(12, 0, 70),
+      rgba(6, 23, 71, 0.521)
+    ),
+    url("./assets/images/925905.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .hero_container {
-    position: relative;
-    min-height: calc(100vh + 1000px);
-    overflow: hidden;
-    background-image: linear-gradient(to bottom, rgba(39, 37, 156, 0.562), rgb(12, 0, 70), rgba(6, 23, 71, 0.521)), url('./assets/images/925905.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
+  position: relative;
+  z-index: 2;
+  min-height: auto;
+  overflow: hidden;
+  width: 100%;
 }
 
 .body_content {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-top: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
